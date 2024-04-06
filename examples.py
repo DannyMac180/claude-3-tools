@@ -1,8 +1,11 @@
 import anthropic
+import os
+
 client = anthropic.Anthropic()
 
 response = client.beta.tools.messages.create(
     model="claude-3-opus-20240229",
+    api_key=os.environ["ANTHROPIC_API_KEY"],
     max_tokens=1024,
     tools=[
         {
