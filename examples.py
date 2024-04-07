@@ -1,11 +1,15 @@
 import anthropic
 import os
+from dotenv import load_dotenv
 
-client = anthropic.Anthropic()
+load_dotenv()
+
+client = anthropic.Anthropic(
+    api_key=os.getenv("ANTHROPIC_API_KEY"),
+)
 
 response = client.beta.tools.messages.create(
     model="claude-3-opus-20240229",
-    api_key=os.environ["ANTHROPIC_API_KEY"],
     max_tokens=1024,
     tools=[
         {
